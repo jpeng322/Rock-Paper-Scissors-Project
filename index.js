@@ -124,11 +124,14 @@ function playRound(playerSelection, computerSelection) {
         console.log(`Congratulations! You Won. The score is now ${playerScore} : ${computerScore}`)
     } else if (playerSelection === "scissor" && computerSelection === "scissor") {
         console.log(`You tied! Try again! The score is now ${playerScore} : ${computerScore} `)
-        // (playerSelection === "scissor" && computerSelection === "rock")
+    }
+    // (playerSelection === "scissor" && computerSelection === "rock")
+    else {
         computerScore += 1
         console.log(`You Lose! Rock beats Scissor. The score is now ${playerScore} : ${computerScore}`)
     }
 }
+
 
 function game() {
     let finalRes = ""
@@ -149,5 +152,42 @@ function game() {
     }
     return `The final score is ${playerScore} : ${computerScore}! ${finalRes}`
 }
-console.log(game())
+// console.log(game())
 // console.log(playRound("papeR", "SciSSor"))
+
+const container = document.querySelector("#container")
+const rockBtn = document.createElement('button')
+rockBtn.textContent = "Rock Button"
+container.append(rockBtn)
+
+const paperBtn = document.createElement('button')
+paperBtn.textContent = "Paper Button"
+container.append(paperBtn)
+
+const scissBtn = document.createElement('button')
+scissBtn.textContent = "Scissor Button"
+container.append(scissBtn)
+
+const options = ["Rock", "Paper", "Scissor"]
+let computerAns = computerPlay(options).toLowerCase()
+
+rockBtn.addEventListener('click', function () {
+    playRound("rock", computerAns)
+    console.log(computerAns)
+    computerAns = computerPlay(options).toLowerCase()
+})
+
+paperBtn.addEventListener('click', function () {
+    playRound("paper", computerAns)
+    console.log(computerAns)
+    computerAns = computerPlay(options).toLowerCase()
+})
+
+
+scissBtn.addEventListener('click', function () {
+    playRound("scissor", computerAns)
+    console.log(computerAns)
+    // console.log(playerSelection)
+    // console.log(computerSelection)
+    computerAns = computerPlay(options).toLowerCase()
+})
